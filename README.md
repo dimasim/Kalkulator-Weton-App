@@ -33,21 +33,8 @@ Sebuah aplikasi web modern yang dibangun menggunakan SvelteKit dan TypeScript un
 ## Struktur Proyek
 
 Proyek ini disusun dengan memisahkan antara data, logika, dan komponen tampilan untuk kemudahan pengelolaan dan skalabilitas.
-/src
-├── lib/
-│   ├── components/
-│   │   ├── PersonInput.svelte      # Komponen input untuk nama & tanggal
-│   │   ├── WetonSummary.svelte     # Komponen untuk ringkasan hasil weton
-│   │   └── tabs/
-│   │       ├── CompatibilityTab.svelte # Konten Tab Kecocokan
-│   │       ├── DirectionTab.svelte   # Konten Tab Arah Rumah
-│   │       └── WeddingTab.svelte     # Konten Tab Hari Baik Nikah
-│   ├── data/
-│   │   └── primbonData.ts          # "Database" statis untuk semua data primbon
-│   └── utils/
-│       └── wetonCalculator.ts      # "Otak" aplikasi, berisi semua fungsi perhitungan
-└── routes/
-└── +page.svelte              # Halaman utama yang mengatur state & komponen
+
+
 ## Cara Menjalankan Proyek
 
 Pastikan Anda memiliki [Node.js](https://nodejs.org/) terinstall di sistem Anda.
@@ -84,9 +71,3 @@ Pastikan Anda memiliki [Node.js](https://nodejs.org/) terinstall di sistem Anda.
 ## Disclaimer
 
 Aplikasi ini dibuat untuk tujuan **edukasi dan pelestarian budaya**. Perhitungan yang ditampilkan didasarkan pada interpretasi dari kitab primbon Jawa seperti Kitab Primbon Atassadhur Adammakna. [cite_start]Hasil ramalan tidak seharusnya menjadi satu-satunya penentu dalam mengambil keputusan hidup yang penting seperti pernikahan[cite: 1547]. Kebijaksanaan, komunikasi, dan komitmen antar pasangan tetap menjadi fondasi utama dalam sebuah hubungan.
-
-
-
-
-
-
