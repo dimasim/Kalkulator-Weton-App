@@ -1,0 +1,233 @@
+<!-- <script lang="ts">
+	// Mendefinisikan tipe data untuk hasil agar sesuai dengan TypeScript
+	interface WetonDetail {
+		weton: string;
+		totalNeptu: number;
+	}
+	interface HasilCocok {
+		nama: string;
+		deskripsi: string;
+		tipe: 'baik' | 'sangat-baik' | 'waspada' | 'buruk' | 'sangat-buruk';
+		totalNeptu: number;
+	}
+
+	// Variabel untuk menyimpan tanggal input dari kedua orang
+	let tanggalOrang1: string = '';
+	let tanggalOrang2: string = '';
+
+	// Variabel untuk menyimpan hasil perhitungan (dengan tipe yang sudah didefinisikan)
+	let wetonOrang1: WetonDetail | null = null;
+	let wetonOrang2: WetonDetail | null = null;
+	let hasilCocok: HasilCocok | null = null;
+
+	// Objek untuk menyimpan nilai Neptu hari dan pasaran (sesuai gambar)
+	const neptu = {
+		hari: { Minggu: 5, Senin: 4, Selasa: 3, Rabu: 7, Kamis: 8, Jumat: 6, Sabtu: 9 },
+		pasaran: { Legi: 5, Pahing: 9, Pon: 7, Wage: 4, Kliwon: 8 }
+	};
+
+	const daftarHari = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+	const daftarPasaran = ['Legi', 'Pahing', 'Pon', 'Wage', 'Kliwon'];
+
+	// Fungsi untuk mendapatkan detail weton (FUNGSI INI SUDAH BENAR)
+	function getWetonDetail(tanggalString: string): WetonDetail | null {
+		if (!tanggalString) return null;
+
+		const tanggal = new Date(tanggalString);
+		const namaHari = daftarHari[tanggal.getDay()];
+		const neptuHari = neptu.hari[namaHari as keyof typeof neptu.hari];
+
+		const tanggalAcuan = new Date('1970-01-01'); // Acuan: 1 Jan 1970 adalah Kamis Wage
+		const selisihMilidetik = tanggal.getTime() - tanggalAcuan.getTime();
+		const selisihHari = Math.floor(selisihMilidetik / (1000 * 60 * 60 * 24));
+
+		// Ditambah 3 karena 1 Jan 1970 adalah Wage (indeks ke-3 dari daftarPasaran)
+		const namaPasaran = daftarPasaran[(selisihHari + 3) % 5];
+		const neptuPasaran = neptu.pasaran[namaPasaran as keyof typeof neptu.pasaran];
+
+		return {
+			weton: `${namaHari} ${namaPasaran}`,
+			totalNeptu: neptuHari + neptuPasaran
+		};
+	}
+
+	// ================= PERUBAHAN UTAMA DI SINI =================
+	// Fungsi untuk menentukan hasil kecocokan berdasarkan tabel, bukan modulo.
+	// Fungsi ini sekarang menerima totalNeptu, bukan sisa bagi.
+	function getHasilWeton(totalNeptu: number) {
+		const hasil: Omit<HasilCocok, 'totalNeptu'> | null = (() => {
+			switch (totalNeptu) {
+				case 1:
+				case 9:
+				case 10:
+				case 18:
+				case 19:
+				case 27:
+				case 28:
+				case 36:
+					return {
+						nama: 'PEGAT',
+						deskripsi:
+							'Sering menghadapi masalah, bisa berupa ekonomi, kekuasaan, hingga perselingkuhan yang akhirnya menyebabkan perpisahan.',
+						tipe: 'buruk'
+					};
+				case 2:
+				case 11:
+				case 20:
+				case 29:
+					return {
+						nama: 'RATU',
+						deskripsi:
+							'Pasangan ini memang sudah jodohnya. Sangat dihargai dan disegani oleh tetangga maupun lingkungan sekitar.',
+						tipe: 'baik'
+					};
+				case 3:
+				case 12:
+				case 21:
+				case 30:
+					return {
+						nama: 'JODOH',
+						deskripsi:
+							'Pasangan ini benar-benar cocok dan bisa saling menerima segala kelebihan dan kekurangan masing-masing.',
+						tipe: 'sangat-baik'
+					};
+				case 4:
+				case 13:
+				case 22:
+				case 31:
+					return {
+						nama: 'TOPO',
+						deskripsi:
+							'Pada awal hubungan akan sering mengalami kesulitan, namun akan bahagia pada akhirnya jika sabar dan bertahan.',
+						tipe: 'waspada'
+					};
+				case 5:
+				case 14:
+				case 23:
+				case 32:
+					return {
+						nama: 'TINARI',
+						deskripsi:
+							'Pasangan ini akan menemukan kebahagiaan, mudah dalam mencari rezeki, dan tidak akan hidup kekurangan.',
+						tipe: 'baik'
+					};
+				case 6:
+				case 15:
+				case 24:
+				case 33:
+					return {
+						nama: 'PADU',
+						deskripsi:
+							'Dalam rumah tangga, pasangan ini akan sering mengalami pertengkaran, namun tidak akan sampai bercerai.',
+						tipe: 'buruk'
+					};
+				case 7:
+				case 16:
+				case 25:
+				case 34:
+					return {
+						nama: 'SUJANAN',
+						deskripsi:
+							'Pasangan ini akan sering mengalami pertengkaran dan masalah perselingkuhan, bisa dari pihak laki-laki maupun perempuan.',
+						tipe: 'sangat-buruk'
+					};
+				case 8:
+				case 17:
+				case 26:
+				case 35:
+					return {
+						nama: 'PESTHI',
+						deskripsi:
+							'Dalam rumah tangga akan rukun, tentram, damai, dan harmonis hingga tua. Jarang ditemui masalah.',
+						tipe: 'baik'
+					};
+				default:
+					return null; // Untuk total neptu di luar rentang tabel
+			}
+		})();
+		return hasil;
+	}
+
+	// Objek untuk memetakan tipe hasil ke kelas warna Tailwind CSS
+	const resultStyles = {
+		baik: 'border-green-500 bg-green-50',
+		'sangat-baik': 'border-sky-500 bg-sky-50',
+		waspada: 'border-yellow-500 bg-yellow-50',
+		buruk: 'border-red-500 bg-red-50',
+		'sangat-buruk': 'border-red-800 bg-red-100'
+	};
+
+	// Blok reaktif Svelte
+	$: {
+		wetonOrang1 = getWetonDetail(tanggalOrang1);
+		wetonOrang2 = getWetonDetail(tanggalOrang2);
+
+		if (wetonOrang1 && wetonOrang2) {
+			const totalNeptu = wetonOrang1.totalNeptu + wetonOrang2.totalNeptu;
+			// Memanggil fungsi yang sudah diperbaiki
+			const hasil = getHasilWeton(totalNeptu);
+			if (hasil) {
+				hasilCocok = { ...hasil, totalNeptu };
+			} else {
+				hasilCocok = null;
+			}
+		} else {
+			hasilCocok = null;
+		}
+	}
+</script>
+
+<div class="flex min-h-screen items-center justify-center bg-slate-100 p-4">
+	<div class="w-full max-w-2xl rounded-2xl bg-white p-8 text-center shadow-lg">
+		<h1 class="mb-2 text-3xl font-bold text-slate-800">Cek Kecocokan Weton Jodoh</h1>
+		<p class="mb-8 text-slate-500">
+			Masukkan tanggal lahir Anda dan pasangan untuk melihat ramalan berdasarkan Primbon Jawa.
+		</p>
+
+		<div class="mb-8 flex flex-col justify-center gap-8 md:flex-row">
+			<div class="flex-1">
+				<label for="orang1" class="mb-2 block text-left font-semibold text-slate-700">
+					Tanggal Lahir Anda
+				</label>
+				<input
+					type="date"
+					id="orang1"
+					bind:value="{tanggalOrang1}"
+					class="w-full rounded-lg border border-slate-300 p-3 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+				/>
+				{#if wetonOrang1}
+				<div class="mt-3 rounded-md bg-slate-100 p-2 text-sm">
+					<strong>{wetonOrang1.weton}</strong> (Neptu: {wetonOrang1.totalNeptu})
+				</div>
+				{/if}
+			</div>
+
+			<div class="flex-1">
+				<label for="orang2" class="mb-2 block text-left font-semibold text-slate-700">
+					Tanggal Lahir Pasangan
+				</label>
+				<input
+					type="date"
+					id="orang2"
+					bind:value="{tanggalOrang2}"
+					class="w-full rounded-lg border border-slate-300 p-3 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+				/>
+				{#if wetonOrang2}
+				<div class="mt-3 rounded-md bg-slate-100 p-2 text-sm">
+					<strong>{wetonOrang2.weton}</strong> (Neptu: {wetonOrang2.totalNeptu})
+				</div>
+				{/if}
+			</div>
+		</div>
+
+		{#if hasilCocok}
+		<div class="{resultStyles[hasilCocok.tipe]} mt-8 rounded-r-lg border-l-4 p-6 text-left">
+			<h2 class="text-2xl font-bold text-slate-900">Hasil: {hasilCocok.nama}</h2>
+			<p class="mt-2 text-slate-600">
+				Total Neptu gabungan Anda dan pasangan adalah <strong>{hasilCocok.totalNeptu}</strong>.
+			</p>
+			<p class="mt-1 text-slate-600">{hasilCocok.deskripsi}</p>
+		</div>
+		{/if}
+	</div>
+</div> -->
