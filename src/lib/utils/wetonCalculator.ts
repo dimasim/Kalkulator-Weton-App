@@ -3,7 +3,8 @@ import {
 	RESULTS_TEXT,
 	SIAL_TEXT,
 	RAMALAN_PERNIKAHAN_TEXT,
-	ARAH_RUMAH, HARI_BAIK_NIKAH
+	ARAH_RUMAH, HARI_BAIK_NIKAH,
+	ANAK_KE_COMPATIBILITY, ANAK_KE_MESSAGES
 } from '$lib/data/primbonData';
 
 interface WetonDetail {
@@ -29,6 +30,30 @@ const DAFTAR_PASARAN = ['Legi', 'Pahing', 'Pon', 'Wage', 'Kliwon'];
  * @param {string} dateString
  * @returns {WetonDetail|null} Objek berisi detail weton atau null jika input tidak valid.
  */
+export function calculateAnakKe(anakKe1: number | null, anakKe2: number | null): PetungResult | null {
+  if (!anakKe1 || !anakKe2) return null;
+
+  let resultMessage = ANAK_KE_MESSAGES.tidakCocok;
+
+  // 1. Cek kasus khusus: anak pertama vs anak pertama
+  if (anakKe1 === 1 && anakKe2 === 1) {
+    resultMessage = ANAK_KE_MESSAGES.sulungVsSulung;
+  } else {
+    // 2. Cek kecocokan berdasarkan tabel
+    const compatibleList = ANAK_KE_COMPATIBILITY[anakKe1];
+    if (compatibleList && compatibleList.includes(anakKe2)) {
+      resultMessage = ANAK_KE_MESSAGES.cocok;
+    }
+  }
+
+  return {
+    title: 'Petung Berdasarkan Urutan Kelahiran',
+    sisa: `Anak ke-${anakKe1} & Anak ke-${anakKe2}`,
+    nama: resultMessage.nama,
+    deskripsi: resultMessage.deskripsi
+  };
+}
+
 export function calculateArahRumah(totalNeptu: number) {
   const sisa = totalNeptu % 8;
   return ARAH_RUMAH[sisa];
@@ -69,7 +94,11 @@ export function getWetonDetail(dateString: string): WetonDetail | null {
  * @param {WetonDetail} weton2 Detail weton orang kedua.
  * @returns {PetungResult[]} Array berisi hasil dari semua 6 petung.
  */
-export function calculateAllPetung(weton1: WetonDetail, weton2: WetonDetail): PetungResult[] {
+export function calculateAllPetung(
+	weton1: WetonDetail, 
+	weton2: WetonDetail,
+	anakKe1: number | null, 
+	anakKe2: number | null): PetungResult[] {
 	if (!weton1 || !weton2) return [];
 
 	const totalNeptu = weton1.totalNeptu + weton2.totalNeptu;
@@ -154,7 +183,10 @@ export function calculateAllPetung(weton1: WetonDetail, weton2: WetonDetail): Pe
 			'Jumlah neptu Anda tidak termasuk dalam kategori yang perlu diwaspadai secara khusus.'
 	});
 
-	
+	const anakKeResult = calculateAnakKe(anakKe1, anakKe2);
+    if (anakKeResult) {
+        results.push(anakKeResult);
+    }
 
 	return results;
 }

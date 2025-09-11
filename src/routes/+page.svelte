@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+
 	import {
 		getWetonDetail,
 		calculateAllPetung,
@@ -21,7 +23,32 @@
 	let person2Name = '';
 	let results: any = null;
 	let activeTab = 'compatibility';
+	let person1AnakKe: number | null = null;
+  	let person2AnakKe: number | null = null;
 
+
+	onMount(() => {
+		// Cek data tersimpan di localStorage
+		const savedData = localStorage.getItem('wetonInputs');
+		if (savedData) {
+			const parsedData = JSON.parse(savedData);
+			person1Name = parsedData.person1Name || '';
+			person1Date = parsedData.person1Date || '';
+			person2Name = parsedData.person2Name || '';
+			person2Date = parsedData.person2Date || '';
+
+			// Jika ada data, langsung hitung hasilnya
+			if (person1Date && person2Date) {
+				calculateCompatibility();
+			}
+		}
+	});
+	$: {
+			if (typeof window !== 'undefined') {
+			const dataToSave = { person1Name, person1Date, person2Name, person2Date, person1AnakKe, person2AnakKe };
+			localStorage.setItem('wetonInputs', JSON.stringify(dataToSave));
+			}
+		}
 	const calculateCompatibility = () => {
 		const weton1 = getWetonDetail(person1Date);
 		const weton2 = getWetonDetail(person2Date);
@@ -29,7 +56,7 @@
 			alert('Silakan masukkan tanggal yang valid untuk kedua orang.');
 			return;
 		}
-		const compatibility = calculateAllPetung(weton1, weton2);
+    	const compatibility = calculateAllPetung(weton1, weton2, person1AnakKe, person2AnakKe);
 		results = {
 			weton1,
 			weton2,
@@ -45,8 +72,13 @@
 		person2Date = '';
 		person1Name = '';
 		person2Name = '';
+		person1AnakKe = null;
+    	person2AnakKe = null;
 		results = null;
 		activeTab = 'compatibility';
+		if (typeof window !== 'undefined') {
+			localStorage.removeItem('wetonInputs');
+		}
 	};
 </script>
 
@@ -59,10 +91,14 @@
 			</div>
 
 			<div class="mb-8 rounded-2xl bg-white p-8 shadow-xl">
-				<div class="mb-6 grid gap-6 md:grid-cols-2">
+				<div class="grid md:grid-cols-2 gap-6 mb-6">
+				<PersonInput title="Orang Pertama" bind:name={person1Name} bind:date={person1Date} bind:anakKe={person1AnakKe} />
+				<PersonInput title="Orang Kedua" bind:name={person2Name} bind:date={person2Date} bind:anakKe={person2AnakKe} />
+				</div>
+				<!-- <div class="mb-6 grid gap-6 md:grid-cols-2">
 					<PersonInput title="Orang Pertama" bind:name={person1Name} bind:date={person1Date} />
 					<PersonInput title="Orang Kedua" bind:name={person2Name} bind:date={person2Date} />
-				</div>
+				</div> -->
 				<div class="flex justify-center gap-4">
 					<button
 						on:click={calculateCompatibility}
