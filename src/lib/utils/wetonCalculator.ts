@@ -3,8 +3,10 @@ import {
 	RESULTS_TEXT,
 	SIAL_TEXT,
 	RAMALAN_PERNIKAHAN_TEXT,
-	ARAH_RUMAH, HARI_BAIK_NIKAH,
-	ANAK_KE_COMPATIBILITY, ANAK_KE_MESSAGES
+	ARAH_RUMAH,
+	HARI_BAIK_NIKAH,
+	ANAK_KE_COMPATIBILITY,
+	ANAK_KE_MESSAGES
 } from '$lib/data/primbonData';
 
 interface WetonDetail {
@@ -30,40 +32,43 @@ const DAFTAR_PASARAN = ['Legi', 'Pahing', 'Pon', 'Wage', 'Kliwon'];
  * @param {string} dateString
  * @returns {WetonDetail|null} Objek berisi detail weton atau null jika input tidak valid.
  */
-export function calculateAnakKe(anakKe1: number | null, anakKe2: number | null): PetungResult | null {
-  if (!anakKe1 || !anakKe2) return null;
+export function calculateAnakKe(
+	anakKe1: number | null,
+	anakKe2: number | null
+): PetungResult | null {
+	if (!anakKe1 || !anakKe2) return null;
 
-  let resultMessage = ANAK_KE_MESSAGES.tidakCocok;
+	let resultMessage = ANAK_KE_MESSAGES.tidakCocok;
 
-  // 1. Cek kasus khusus: anak pertama vs anak pertama
-  if (anakKe1 === 1 && anakKe2 === 1) {
-    resultMessage = ANAK_KE_MESSAGES.sulungVsSulung;
-  } else {
-    // 2. Cek kecocokan berdasarkan tabel
-    const compatibleList = ANAK_KE_COMPATIBILITY[anakKe1];
-    if (compatibleList && compatibleList.includes(anakKe2)) {
-      resultMessage = ANAK_KE_MESSAGES.cocok;
-    }
-  }
+	// 1. Cek kasus khusus: anak pertama vs anak pertama
+	if (anakKe1 === 1 && anakKe2 === 1) {
+		resultMessage = ANAK_KE_MESSAGES.sulungVsSulung;
+	} else {
+		// 2. Cek kecocokan berdasarkan tabel
+		const compatibleList = ANAK_KE_COMPATIBILITY[anakKe1];
+		if (compatibleList && compatibleList.includes(anakKe2)) {
+			resultMessage = ANAK_KE_MESSAGES.cocok;
+		}
+	}
 
-  return {
-    title: 'Petung Berdasarkan Urutan Kelahiran',
-    sisa: `Anak ke-${anakKe1} & Anak ke-${anakKe2}`,
-    nama: resultMessage.nama,
-    deskripsi: resultMessage.deskripsi
-  };
+	return {
+		title: 'Petung Berdasarkan Urutan Kelahiran',
+		sisa: `Anak ke-${anakKe1} & Anak ke-${anakKe2}`,
+		nama: resultMessage.nama,
+		deskripsi: resultMessage.deskripsi
+	};
 }
 
 export function calculateArahRumah(totalNeptu: number) {
-  const sisa = totalNeptu % 8;
-  return ARAH_RUMAH[sisa];
+	const sisa = totalNeptu % 8;
+	return ARAH_RUMAH[sisa];
 }
 export function getHariBaikNikah(compatibility: PetungResult[]) {
-  const result8 = compatibility.find(r => r.title.includes('Dibagi 8'));
-  if (result8 && result8.nama) {
-    return HARI_BAIK_NIKAH[result8.nama] || HARI_BAIK_NIKAH.default;
-  }
-  return HARI_BAIK_NIKAH.default;
+	const result8 = compatibility.find((r) => r.title.includes('Dibagi 8'));
+	if (result8 && result8.nama) {
+		return HARI_BAIK_NIKAH[result8.nama] || HARI_BAIK_NIKAH.default;
+	}
+	return HARI_BAIK_NIKAH.default;
 }
 export function getWetonDetail(dateString: string): WetonDetail | null {
 	if (!dateString) return null;
@@ -95,10 +100,11 @@ export function getWetonDetail(dateString: string): WetonDetail | null {
  * @returns {PetungResult[]} Array berisi hasil dari semua 6 petung.
  */
 export function calculateAllPetung(
-	weton1: WetonDetail, 
+	weton1: WetonDetail,
 	weton2: WetonDetail,
-	anakKe1: number | null, 
-	anakKe2: number | null): PetungResult[] {
+	anakKe1: number | null,
+	anakKe2: number | null
+): PetungResult[] {
 	if (!weton1 || !weton2) return [];
 
 	const totalNeptu = weton1.totalNeptu + weton2.totalNeptu;
@@ -116,10 +122,12 @@ export function calculateAllPetung(
 
 	const keyHari =
 		weton1.hari < weton2.hari ? `${weton1.hari}&${weton2.hari}` : `${weton2.hari}&${weton1.hari}`;
+	const keyHariLahir = RESULTS_TEXT.hariLahir[keyHari] || 'Tidak ditemukan kecocokan spesifik.';
 	results.push({
 		title: 'Petung Hari Lahir',
 		sisa: `${weton1.hari} & ${weton2.hari}`,
-		deskripsi: RESULTS_TEXT.hariLahir[keyHari] || 'Tidak ditemukan kecocokan spesifik.'
+		deskripsi: keyHariLahir
+		// RESULTS_TEXT.hariLahir[keyHari] || 'Tidak ditemukan kecocokan spesifik.'
 	});
 
 	// 3. Dibagi 4
@@ -149,7 +157,7 @@ export function calculateAllPetung(
 		title: 'Petung Jumlah Neptu Dibagi 8',
 		sisa: `Sisa ${sisa8}`,
 		nama: res8.nama,
-		deskripsi: `Hasil perhitungan ini adalah ${res8.nama}.`
+		deskripsi: `${res8.tipe}.`
 	});
 
 	// 6. Dibagi 10
@@ -184,9 +192,9 @@ export function calculateAllPetung(
 	});
 
 	const anakKeResult = calculateAnakKe(anakKe1, anakKe2);
-    if (anakKeResult) {
-        results.push(anakKeResult);
-    }
+	if (anakKeResult) {
+		results.push(anakKeResult);
+	}
 
 	return results;
 }

@@ -101,29 +101,86 @@ export const RESULTS_TEXT: {
 } = {
 	dibagi9: {
 		'3&5': 'Rumah tangganya akan mengalami perceraian dengan cepat.',
+		'5&3': 'Rumah tangganya akan mengalami perceraian dengan cepat.',
 		'5&9': 'Rumah tangganya akan banyak mendapat rejeki',
+		'9&5': 'Rumah tangganya akan banyak mendapat rejeki',
+		'3&7': 'Rumah tangganya akan mendapat celaka dan bahaya.',
+		'7&3': 'Rumah tangganya akan mendapat celaka dan bahaya.',
+		'2&3': 'Salah satu pasangan akan meninggal terlebih dahulu.',
+		'3&2': 'Salah satu pasangan akan meninggal terlebih dahulu.',
 		'2&6': 'Rumah tangganya akan cepat menjadi kaya.',
+		'6&2': 'Rumah tangganya akan cepat menjadi kaya.',
+		'7&2': 'Anaknya akan meninggal lebih dulu.',
 		'2&7': 'Anaknya akan meninggal lebih dulu.',
-		'1&4': ' Rumah tangganya tidak tentram dan mengalami banyak celaka.'
+		'3&6': 'Rumah tangganya akan mendapat banyak anugerah.',
+		'6&3': 'Rumah tangganya akan mendapat banyak anugerah.',
+		'1&4': ' Rumah tangganya tidak tentram dan mengalami banyak celaka.',
+		'4&1': ' Rumah tangganya tidak tentram dan mengalami banyak celaka.',
+		'3&4':'Rumah tangganya akan banyak mendapat celaka.',
+		'4&3':'Rumah tangganya akan banyak mendapat celaka.',
+		'6&9':'Rumah tangganya akan mengalami kesengsaraan hidup.',
+		'9&6':'Rumah tangganya akan mengalami kesengsaraan hidup.',
+		'5&6':'Rumah tangganya akan mudah dalam mencari rejeki.',
+		'6&5':'Rumah tangganya akan mudah dalam mencari rejeki.',
+		'4&6':'Rumah tangganya akan banyak rejeki mengalir.',
+		'6&4':'Rumah tangganya akan banyak rejeki mengalir.',
+		'6&8':'Rumah tangganya akan memiliki banyak musuh.',
+		'8&6':'Rumah tangganya akan memiliki banyak musuh.',
+		'1&2':'Rumah tangganya akan tentram dan baik-baik saja.',
+		'2&1':'Rumah tangganya akan tentram dan baik-baik saja.',
+		'1&1':'Rumah tangganya akan berjalan baik, bahagia dan saling mencintai.',
+		'4&7':'Rumah tangganya akan hidup miskin dan melarat.',
+		'8&8':'Rumah tangganya menyenangkan dan disukai orang lain.',
+		'7&4':'Rumah tangganya akan hidup miskin dan melarat.',
+		'4&8':'Rumah tangganya akan cenderung mengalami berbagai macam rintangan.',
+		'8&4':'Rumah tangganya akan cenderung mengalami berbagai macam rintangan.',	
+
+
 	},
 	hariLahir: {
 		'Selasa&Sabtu': 'Kehidupan rumah tangganya akan mengalami banyak pertengkaran.',
+		'Sabtu&Selasa': 'Kehidupan rumah tangganya akan mengalami banyak pertengkaran.',
+		'Minggu&Selasa': 'Kehidupan rumah tangganya miskin.',
+		'Selasa&Minggu': 'Kehidupan rumah tangganya miskin.',
 		'Senin&Sabtu': 'Kehidupan rumah tangganya selalu berkecukupan, tidak pernah kurang.',
+		'Sabtu&Senin': 'Kehidupan rumah tangganya selalu berkecukupan, tidak pernah kurang.',
 		'Rabu&Jumat': 'Rumah tangganya akan mendapatkan keselamatan, meskipun difitnah.',
 		'Jumat&Sabtu': 'Rumah tangganya akan mendapatkan celaka.',
+		'Sabtu&Jumat': 'Rumah tangganya akan mendapatkan celaka.',
+		'Jumat&Selasa':'Rumah tangganya akan mengalami perceraian.',
 		'Selasa&Jumat':'Rumah tangganya akan mengalami perceraian.',
+		'Senin&Selasa': 'Rumah tangganya selamat, meskipun mendapat fitnah.',
+		'Selasa&Senin': 'Rumah tangganya selamat, meskipun mendapat fitnah.',
+		'Selasa&Selasa':'Rumah tangganya cenderung tidak cocok dan banyak mengalami pertengkaran.',
+		'Selasa&Rabu':'Kehidupannya dapat menjadi kaya.',
+		'Rabu&Selasa':'Kehidupannya akan menjadi kaya.',
+		'Selasa&Kamis':'Kehidupan rumah tangganya banyak rejeki.',
+		'Kamis&Selasa':'Kehidupan rumah tangganya banyak rejeki.',
+		'Senin&Jumat': 'Rumah tangganya selamat, meskipun mendapat fitnah.',
+		'Jumat&Senin':'Rumah tangganya selamat, meskipun mendapat fitnah.',
+		'Minggu&Jumat': 'Rumah tangganya selamat, meskipun mendapat fitnah.',
+		'Jumat&Minggu': 'Rumah tangganya selamat, meskipun mendapat fitnah.',
+		'Jumat&Jumat' :'Rumah tangganya akan mengalami kemiskinan.',
+		'Senin&Kamis': 'Kehidupan rumah tangganya baik dan disenangi banyak orang.',
+		'Kamis&Senin': 'Kehidupan rumah tangganya baik dan disenangi banyak orang.',
+		'Senin&Rabu': 'Akan mendapatkan anak perempuan.',
+		'Rabu&Senin': 'Akan mendapatkan anak perempuan.',
+		'Kamis&Sabtu':'Rumah tangganya akan mengalami perceraian.',
+		'Sabtu&Kamis':'Rumah tangganya akan mengalami perceraian.',
+		// 'Senin&Selasa':' Rumah tangganya selamat, meskipun mendapat fitnah.',
+
+
+
 		// yang bawah ngarang copilot
 
-		'Kamis&Minggu': 'kehidupan rumah tangganya akan banyak mendapat rejeki.',
-		Senin: 'Kehidupan rumah tangganya akan mengalami kesusahan dan penderitaan.',
-		'Senin&Selasa': 'Kehidupan rumah tangganya akan mengalami kesusahan dan penderitaan.',
-		'Rabu&Sabtu': 'Kehidupan rumah tangganya akan bahagia dan sejahtera.',
-		'Kamis&Jumat': 'Kehidupan rumah tangganya akan banyak mendapat rejeki.',
-		'Kamis&Sabtu': 'Kehidupan rumah tangganya akan bahagia dan sejahtera.',
-		'Jumat&Minggu': 'Kehidupan rumah tangganya akan banyak mendapat rejeki.',
-		'Rabu&Minggu': 'Kehidupan rumah tangganya akan bahagia dan sejahtera.',
-		'Senin&Jumat': 'Kehidupan rumah tangganya akan mengalami kesusahan dan penderitaan.',
-		'Selasa&Minggu': 'Kehidupan rumah tangganya akan mengalami banyak pertengkaran.'
+		// 'Kamis&Minggu': 'kehidupan rumah tangganya akan banyak mendapat rejeki.',
+		// Senin: 'Kehidupan rumah tangganya akan mengalami kesusahan dan penderitaan.',
+		// 'Rabu&Sabtu': 'Kehidupan rumah tangganya akan bahagia dan sejahtera.',
+		// 'Kamis&Jumat': 'Kehidupan rumah tangganya akan banyak mendapat rejeki.',
+		// 'Kamis&Sabtu': 'Kehidupan rumah tangganya akan bahagia dan sejahtera.',
+		// 'Jumat&Minggu': 'Kehidupan rumah tangganya akan banyak mendapat rejeki.',
+		// 'Rabu&Minggu': 'Kehidupan rumah tangganya akan bahagia dan sejahtera.',
+		// 'Senin&Jumat': 'Kehidupan rumah tangganya akan mengalami kesusahan dan penderitaan.',
 	},
 	dibagi4: [
 		{ nama: 'Ganthi', deskripsi: 'Akan sulit memiliki keturunan.' }, // Sisa 1
@@ -139,23 +196,23 @@ export const RESULTS_TEXT: {
 		{ nama: 'Lungguh', deskripsi: 'Akan memiliki jabatan atau pangkat.' } // Sisa 5 (atau 0)
 	],
 	dibagi8: [
-		{ nama: 'Pegat', tipe: 'buruk' }, // Sisa 1
-		{ nama: 'Ratu', tipe: 'baik' }, // Sisa 2
-		{ nama: 'Jodoh', tipe: 'sangat-baik' }, // Sisa 3
-		{ nama: 'Topo', tipe: 'waspada' }, // Sisa 4
-		{ nama: 'Tinari', tipe: 'baik' }, // Sisa 5
-		{ nama: 'Padu', tipe: 'buruk' }, // Sisa 6
-		{ nama: 'Sujanan', tipe: 'sangat-buruk' }, // Sisa 7
-		{ nama: 'Pesthi', tipe: 'baik' } // Sisa 8 (atau 0)
+		{ nama: 'Pegat', tipe: 'Pasangan yang dalam perhitungan termasuk kategori Pegat, maka dalam kehidupan rumah tangganya akan banyak menemui masalah, misalnya kesulitan ekonomi, komunikasi yang kurang baik, perselingkuhan, sehingga rawan terjadi perceraian.' }, // Sisa 1
+		{ nama: 'Ratu', tipe: 'Pasangan yang dalam perhitungan termasuk kategori Ratu, maka dalam kehidupan rumah tangganya akan disegani banyak orang, tetangga, keluarga dan teman dekatnya, banyak orang yang iri dengan keharmonisannya.' }, // Sisa 2
+		{ nama: 'Jodoh', tipe: 'Pasangan yang dalam perhitungan termasuk kategori Jodoh, maka kehidupan rumah tangganya akan harmonis, saling cocok satu dengan yang lain, saling bisa menerima kelebihan dan kekurangan masing-masing, rumah tangganya akan langgeng sampai tua.' }, // Sisa 3
+		{ nama: 'Topo', tipe: ' Pasangan yang dalam perhitungan termasuk kategori Topo, maka pada awal kehidupan rumah tangganya akan banyak mengalami kesulitan, terutama dari segi ekonomi. Namun seiring berjalannya waktu, kehidupannya akan membaik, terutama setelah mempunyai anak.' }, // Sisa 4
+		{ nama: 'Tinari', tipe: 'Pasangan yang dalam perhitungan termasuk kategori Tinari, maka kehidupan rumah tangganya akan banyak menemui kesenangan, beruntung, mudah mencari rejeki sehingga tidak sampai kekurangan.' }, // Sisa 5
+		{ nama: 'Padu', tipe: 'Pasangan yang dalam perhitungan termasuk kategori Padu, maka kehidupan rumah tangganya akan sering terjadi konflik, pertengkaran ataupun beda pendapat, tetapi tidak sampai terjadi perceraian.' }, // Sisa 6
+		{ nama: 'Sujanan', tipe: 'Pasangan yang dalam perhitungan termasuk kategori Sujanan, maka kehidupan rumah tangganya akan sering bertengkar, tidak harmonis, dan rawan sekali terjadi perselingkuhan.' }, // Sisa 7
+		{ nama: 'Pesthi', tipe: 'Pasangan yang dalam perhitungan termasuk kategori Pesthi, maka kehidupan rumah tangganya akan damai, rukun, dan tentram. Tidak ada masalah apapun yang dapat merusak keharmonisannya.' } // Sisa 8 (atau 0)
 	],
 	dibagi10: [
-		null, // sisa 1
-		null, // sisa 2
-		null, // sisa 3
-		null, // sisa 4
-		null, // sisa 5
-		{ nama: 'Bumi Kapetak', deskripsi: 'Tahan sengsara, rajin bekerja, dan menjaga kebersihan.' }, // sisa 6
-		null,
+		{nama:'Wasesa Segara',deskripsi:'Pasangan ini memiliki keluhuran budi pekerti, mudah memberikan maaf, memiliki wibawa dimata orang lain, dan berlapang dada dalam berbagai hal.'},
+		{nama:'Tunggak Semi',deskripsi:'Pasangan yang masuk perhitungan ini akan memiliki rejeki yang melimpah dalam rumah tangganya.'}, // sisa 2
+		{nama:'Satria Wibawa',deskripsi:'Dalam kehidupan rumah tangganya, pasangan ini memiliki kemuliaan dan keluhuran didalam keluarga maupun masyarakat.'},
+		{nama:'Sumur Sinaba',deskripsi:'Pasangan suami-istri ini memiliki kepandaian yang luar biasa sehingga sering menjadi tempat bertanya bagi orang lain.'},
+		{nama:'Satria Wirang', deskripsi:'Pasangan suami-istri ini dalam kehidupannya seringkali menanggung malu dan susah.'},
+		{nama: 'Bumi Kapetak', deskripsi: 'Pasangan suami-istri ini dalam kehidupan rumah tangganya akan tahan pada kondisi sengsara dan kalut hati. Sisi baik pasangan ini adalah rajin bekerja dan selalu menjaga kebersihan.' }, // sisa 6
+		{nama:'Lebu Katiup Angin',deskripsi:'Pasangan suami-istri yang masuk dalam kategori ini akan mengalami kehidupan yang sengsara, keinginan seringkali tidak terkabul, dan memiliki kecenderungan sering berpindah rumah.'},
 		null,
 		null,
 		null // Sisa 7-10
