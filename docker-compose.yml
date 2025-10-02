@@ -1,0 +1,31 @@
+# Versi file compose, direkomendasikan untuk menggunakan versi yang lebih modern
+version: '3.8'
+
+# Blok utama untuk mendefinisikan semua layanan/container Anda
+services:
+  # Nama layanan Anda, bisa apa saja (misal: web, backend, dll). Kita gunakan 'app'.
+  app:
+    # Perintah ini memberitahu Docker Compose untuk membangun image
+    # menggunakan Dockerfile yang ada di direktori saat ini ('.').
+    build: .
+    
+    # Memberi nama pada image yang akan di-build agar mudah dikenali
+    image: weton-app:latest
+    
+    # Memetakan port. Formatnya adalah 'PORT_DI_HOST:PORT_DI_CONTAINER'.
+    # Ini akan meneruskan trafik dari port 3000 di komputer Anda
+    # ke port 3000 di dalam container (yang sudah di-EXPOSE di Dockerfile).
+    ports:
+      - "3005:3000"
+      
+    # Kebijakan restart. 'unless-stopped' berarti container akan selalu
+    # restart secara otomatis jika crash atau saat server reboot,
+    # kecuali jika Anda sengaja menghentikannya (dengan 'docker stop' atau 'docker-compose down').
+    restart: unless-stopped
+    
+    # (Opsional) Anda bisa menimpa environment variables di sini jika perlu.
+    # Namun karena sudah ada di Dockerfile, ini tidak wajib.
+    # environment:
+    #   - HOST=0.0.0.0
+    #   - PORT=3000
+    #   - DATABASE_URL=...

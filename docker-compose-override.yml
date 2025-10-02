@@ -1,0 +1,11 @@
+services:
+  app:
+    # Ganti perintah default untuk menjalankan server development
+    command: npm run dev
+    
+    # 'volumes' akan menyinkronkan folder lokal Anda dengan folder di dalam container
+    volumes:
+      # Sinkronkan semua file dari direktori saat ini ke /app di container
+      - .:/app
+      # Trik: Cegah folder node_modules lokal menimpa node_modules di container
+      - /app/node_modules
