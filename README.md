@@ -41,8 +41,8 @@ Pastikan Anda memiliki [Node.js](https://nodejs.org/) terinstall di sistem Anda.
 
 1.  **Clone repositori ini:**
     ```bash
-    git clone [https://github.com/nama-anda/weton-checker.git](https://github.com/nama-anda/weton-checker.git)
-    cd weton-checker
+    git clone https://github.com/dimasim/Kalkulator-Weton-App.git
+    cd Kalkulator-Weton-App
     ```
 
 2.  **Install dependensi:**
